@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @delivery_employee.name %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @delivery_employee.phone_number %>
+</p>
+
+<p>
+  <strong>Sex:</strong>
+  <%= @delivery_employee.sex %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @delivery_employee.email %>
+</p>
+
+<p> 
+	<strong> Working for: </strong>
+	<%= workingfor @delivery_employee.date_joined %> years.
+</p>	
+
+<%= link_to 'Edit', edit_delivery_employee_path(@delivery_employee) %> |
+<%= link_to 'Back', delivery_employees_path %>

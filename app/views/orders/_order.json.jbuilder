@@ -1,0 +1,2 @@
+json.extract! order, :id, :pizza_id, :pizza_quantity, :side_id, :side_quantity, :drink_id, :drink_quantity, :dessert_id, :dessert_quantity, :created_at, :updated_at
+json.url order_url(order, format: :json)

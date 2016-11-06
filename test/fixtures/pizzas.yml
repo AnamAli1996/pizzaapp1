@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pizza_name: MyString
+  pizza_size: 1
+  price: 1.5
+  description: MyString
+  vegetarian: false
+  gluten_free: false
+  spice_level: MyString
+  image: MyString
+
+two:
+  pizza_name: MyString
+  pizza_size: 1
+  price: 1.5
+  description: MyString
+  vegetarian: false
+  gluten_free: false
+  spice_level: MyString
+  image: MyString

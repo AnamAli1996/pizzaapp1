@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Side name:</strong>
+  <%= @side.side_name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @side.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @side.description %>
+</p>
+
+<p>
+  <strong>Vegetarian:</strong>
+  <%= @side.vegetarian %>
+</p>
+
+<p>
+  <strong>Gluten free:</strong>
+  <%= @side.gluten_free %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+   <%= image_tag(@side.image, :size=>"100x80") %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_side_path(@side) %> |
+<%= link_to 'Back', sides_path %>

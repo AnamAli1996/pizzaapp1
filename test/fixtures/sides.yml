@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  side_name: MyString
+  price: 1.5
+  description: MyString
+  vegetarian: false
+  gluten_free: false
+  image: MyString
+
+two:
+  side_name: MyString
+  price: 1.5
+  description: MyString
+  vegetarian: false
+  gluten_free: false
+  image: MyString

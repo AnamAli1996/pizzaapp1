@@ -1,0 +1,44 @@
+window.dataLayer.push({
+  "site": {
+    "environment": "WM",
+    "versionNo": "25.1.0.6594",
+    "versionName": "Beta"
+  },
+  "user": {
+    "id": "anon",
+    "loginState": "false",
+    "loginType": "anon",
+    "existingCustomer": "false",
+    "language": "en-IE"
+  },
+  "page": {
+    "type": "Menu Listings",
+    "subType": "store-menu",
+    "name": "Menu",
+    "url": ""
+  },
+  "store": {
+    "id": 27344,
+    "name": "Cork - Blackpool",
+    "city": "Republic of Ireland",
+    "postcode": ""
+  },
+  "basket": {
+    "id": "",
+    "affiliation": "Cork - Blackpool",
+    "subTotal": "0.00",
+    "total": "0.00",
+    "shipping": "0.00",
+    "paymentType": "Unspecified",
+    "currency": "EUR",
+    "shippingMethod": "Delivery",
+    "noOfProducts": "0.00",
+    "quantity": "0.00",
+    "deliveryTime": "01/01/0001 00:00:00",
+    "isCollectionOnly": false
+  },
+  "basketProducts": [],
+  "address Search": "FullAddress"
+});
+
+window.pageContext= {pageType : 'StoreMenu', dataLayerFormat: 'MenuListings'} ;

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pizza:</strong>
+  <%= @order.pizza.pizza_name %>
+</p>
+
+<p>
+  <strong>Pizza quantity:</strong>
+  <%= @order.pizza_quantity %>
+</p>
+
+<p>
+  <strong>Side:</strong>
+  <%= @order.side.side_name %>
+</p>
+
+<p>
+  <strong>Side quantity:</strong>
+  <%= @order.side_quantity %>
+</p>
+
+<p>
+  <strong>Drink:</strong>
+  <%= @order.drink.drink_brand %>
+</p>
+
+<p>
+  <strong>Drink quantity:</strong>
+  <%= @order.drink_quantity %>
+</p>
+
+<p>
+  <strong>Dessert:</strong>
+  <%= @order.dessert.dessert_name %>
+</p>
+
+<p>
+  <strong>Dessert quantity:</strong>
+  <%= @order.dessert_quantity %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

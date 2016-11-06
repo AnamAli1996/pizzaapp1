@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Image:</strong>
+   <%= image_tag(@pizza.image, :size=>"100x80") %>
+</p>
+<p>
+  <strong>Pizza name:</strong>
+  <%= @pizza.pizza_name %>
+</p>
+
+<p>
+  <strong>Pizza size:</strong>
+  <%= @pizza.pizza_size %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @pizza.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pizza.description %>
+</p>
+
+<p>
+  <strong>Vegetarian:</strong>
+  <%= @pizza.vegetarian %>
+</p>
+
+<p>
+  <strong>Gluten free:</strong>
+  <%= @pizza.gluten_free %>
+</p>
+
+<p>
+  <strong>Spice level:</strong>
+  <%= @pizza.spice_level %>
+</p>
+
+<h2>Star Ratings and comments </h2>
+	<%= form_for([@pizza, Comment.new]) do |f| %>
+	
+	<h3><%= f.label :stars %>
+		<% stars = [1,2,3,4,5]%>
+		<% stars.each do |star| %>
+			<%=f.radio_button :stars, star %><%= star %>
+		<% end %>
+	</h3></br>
+	<%= f.text_area :content, :rows=> 4, :cols => 40 %>
+	<div class = "actions">
+		<%= f.submit "Post a comment" %>
+	</div>
+<% end %>	
+
+<% if @pizza.comments.empty? %>
+	<h3>You are the first to comment </h3>
+<% else %>
+	<h2> What others felt about this:</h2>
+	<% @pizza.comments.reverse.each do |comment| %>
+		<p> <%= comment.content %>
+			Posted <%= time_ago_in_words(comment.created_at) %> ago
+		</p>
+	<% end %>
+	<h3> Star Rating </h3>
+	<p>
+		<%= number_with_precision(@pizza.average_stars, precision: 0)%>
+	</p>
+<% end %>	
+<%= link_to 'Edit', edit_pizza_path(@pizza) %> |
+<%= link_to 'Back', pizzas_path %>

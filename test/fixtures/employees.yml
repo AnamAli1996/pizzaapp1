@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee_name: MyString
+  date_joined: 2016-10-04
+  phone_number: MyString
+
+two:
+  employee_name: MyString
+  date_joined: 2016-10-04
+  phone_number: MyString

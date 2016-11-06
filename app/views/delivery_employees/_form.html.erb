@@ -1,0 +1,52 @@
+<%= bootstrap_form_for(@delivery_employee) do |f| %>
+  <% if @delivery_employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delivery_employee.errors.count, "error") %> prohibited this delivery_employee from being saved:</h2>
+
+      <ul>
+      <% @delivery_employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+   
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    
+    <%= f.text_field :phone_number, value: "08X-XXX-XXXX" %>
+  </div>
+  <div class="field">
+	<%= f.label :sex %><br>
+    <%= f.radio_button :sex, 0, label: "Male", inline: true %>
+	<%= f.radio_button :sex, 1, label: "Female", inline: true %>
+  </div>
+  
+  <div class = "field">
+	<%= f.label :date %><br>
+	<%= f.text_field :date_joined, hide_label: true, class: 'datepicker' %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		$('.datepicker').datepicker();
+	});
+	</script>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+ 
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

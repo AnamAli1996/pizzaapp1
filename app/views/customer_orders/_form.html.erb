@@ -1,0 +1,35 @@
+<%= bootstrap_form_for(@customer_order) do |f| %>
+  <% if @customer_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer_order.errors.count, "error") %> prohibited this customer_order from being saved:</h2>
+
+      <ul>
+      <% @customer_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    
+    <%= f.collection_select:order_id, Order.all, :id, :id%>
+  </div>
+  <div class="field">
+    
+  <%= f.collection_select:customer_id, Customer.all, :id, :first_name%>
+  </div>
+  
+  <div class="field">
+	
+	<%= f.collection_select:delivery_employee_id, DeliveryEmployee.all, :id, :name %>
+  </div>	
+  
+  <div class="field">
+    
+    <%= f.time_select :delivery_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

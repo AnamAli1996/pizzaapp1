@@ -1,0 +1,49 @@
+<%= bootstrap_form_for(@pizza) do |f| %>
+  <% if @pizza.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pizza.errors.count, "error") %> prohibited this pizza from being saved:</h2>
+
+      <ul>
+      <% @pizza.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+   
+    <%= f.text_field :pizza_name %>
+  </div>
+  <div class="field">
+    
+    <%= f.number_field :pizza_size %>
+  </div>
+  <div class="field">
+   
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+
+    <%= f.check_box :vegetarian %>
+  </div>
+  <div class="field">
+    
+    <%= f.check_box :gluten_free %>
+  </div>
+  <div class="field">
+    
+    <%= f.text_field :spice_level %>
+  </div>
+  <div class="field">
+  
+    <%= f.text_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

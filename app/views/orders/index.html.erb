@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Orders</h1>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	background-color: #ffe6cc
+}
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+</style>
+<table>
+  <thead>
+    <tr>
+      <th>Pizza</th>
+      <th>Pizza quantity</th>
+      <th>Side</th>
+      <th>Side quantity</th>
+      <th>Drink</th>
+      <th>Drink quantity</th>
+      <th>Dessert</th>
+      <th>Dessert quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.pizza.pizza_name %></td>
+        <td><%= order.pizza_quantity %></td>
+        <td><%= order.side.side_name %></td>
+        <td><%= order.side_quantity %></td>
+        <td><%= order.drink.drink_brand %></td>
+        <td><%= order.drink_quantity %></td>
+        <td><%= order.dessert.dessert_name %></td>
+        <td><%= order.dessert_quantity %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path %>

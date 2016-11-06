@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Drink brand:</strong>
+  <%= @drink.drink_brand %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @drink.price %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(@drink.image, :size=>"100x80") %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_drink_path(@drink) %> |
+<%= link_to 'Back', drinks_path %>

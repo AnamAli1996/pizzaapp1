@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  drink_brand: MyString
+  price: 1.5
+  image: MyString
+
+two:
+  drink_brand: MyString
+  price: 1.5
+  image: MyString
