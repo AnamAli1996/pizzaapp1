@@ -7,7 +7,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @dessert.price %>
+  <%= euro @dessert.price %>
 </p>
 
 <p>
@@ -17,12 +17,12 @@
 
 <p>
   <strong>Vegetarian:</strong>
-  <%= @dessert.vegetarian %>
+  <%= yesno(@dessert.vegetarian) %>
 </p>
 
 <p>
   <strong>Gluten free:</strong>
-  <%= @dessert.gluten_free %>
+  <%= glutenfree(@dessert.gluten_free) %>
 </p>
 
 <p>
@@ -30,6 +30,7 @@
   <%= image_tag(@dessert.image, :size=>"100x80") %>
 </p>
 
-
-<%= link_to 'Edit', edit_dessert_path(@dessert) %> |
+<% if signed_in2? %>
+	<%= link_to 'Edit', edit_dessert_path(@dessert) %> 
+<% end %>	
 <%= link_to 'Back', desserts_path %>

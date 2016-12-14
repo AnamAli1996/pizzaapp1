@@ -1,0 +1,30 @@
+<h2>Star Rating and Reviews: </h2>
+	
+	
+	<% if @reviews.empty?%>
+		<h3> You are the first to review! </3>
+	<% else %>
+		<h2> Reviews:</h2>
+		<fieldset>
+		<% @reviews.reverse.each do |comment|%>
+			<div class="boxed">
+				<p><%= comment.comment %>
+				<br />
+				<br />
+				 Posted <%=time_ago_in_words(comment.created_at)%> ago <b> by <%= comment.customer.first_name %></b>
+				 </p>
+				 <br />
+				 <td><%=link_to "Download File", comment.attachment_url%></td>
+			</div>
+			 <br />
+		<% end%>
+		
+		<h3> Ratings </h3>
+		<p> 
+			
+		</p>
+	<% end%>
+	
+	<h2> Would you like to give us a review? </h2>
+	<%= button_to 'Review us!',new_review_path, method: :get,  class:"btn btn-default"%>
+

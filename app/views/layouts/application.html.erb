@@ -47,10 +47,13 @@ body {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+		
         <li><%=link_to "Pizzas", pizzas_path%>
 		<li><%=link_to "Sides", sides_path%>
 		<li><%=link_to "Desserts", desserts_path%>
 		<li><%=link_to "Drinks", drinks_path%>
+		<li><%=link_to "About us", pages_about_path %>
+		
 		<% if signed_in? %>
 			<li><%=link_to "Edit Details", edit_customer_path(@current_customer.id)%></li>
 		<% else %>
@@ -64,13 +67,24 @@ body {
 			<li><%= link_to "Log out", logout_path %></li>
 		<% end %>
 		
+		<% if signed_in2? %>
+			<li><%=link_to "Edit Details", edit_delivery_employee_path(@current_delivery_employee.id)%></li>
+		<% end %>	
+			
 		<% if !signed_in2? %>
 			<li><%=link_to "Employee Login", login2_path%>
 		<% else %>
 			<li><Signed in as <%= @current_delivery_employee.name %></li>
 			<li><%= link_to "Logout", logout2_path %></li>
-		<% end %>	
+		<% end %>
+		<li><%=link_to "Reviews!", reviews_path %></li>
+		
+		
+	
+		
       </ul>
+	  
+	  
       
 	  
       <ul class="nav navbar-nav navbar-right">
@@ -96,6 +110,8 @@ body {
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+		
 </body>
 
 

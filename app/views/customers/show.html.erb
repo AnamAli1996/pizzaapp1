@@ -39,6 +39,14 @@
   <strong>Phone number:</strong>
   <%= @customer.phone_number %>
 </p>
+<p>
+
+
+<h3>How far from Pizzeria! </h3>
+<%= @customer.distance_to("Upper Dominick Street Dublin 8") %> miles
+<p> <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@customer.latitude}%2C#{@customer.longitude}"%> </p>
+
+</p>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

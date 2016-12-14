@@ -18,6 +18,7 @@ class DeliveryEmployeesController < ApplicationController
     @delivery_employee = DeliveryEmployee.new
   end
 
+
   # GET /delivery_employees/1/edit
   def edit
   end

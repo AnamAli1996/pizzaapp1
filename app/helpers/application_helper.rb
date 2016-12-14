@@ -20,5 +20,26 @@ def workingfor(date_joined)
 		today = Date.today
 		period = today.year - date_joined.year
 		period
+end
+
+def euro(amount)
+	number_to_currency(amount, :unit=> '€')
+end	
+
+def yesno(vegetarian)
+		if vegetarian	
+			return "Yes"
+		else
+			return "No"
+		end
 	end
+
+def glutenfree(gluten_free)
+		if gluten_free	
+			return "Yes"
+		else
+			return "No"
+		end
+	end
+
 end

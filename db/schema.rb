@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105145710) do
+ActiveRecord::Schema.define(version: 20161214205153) do
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -20,15 +25,6 @@ ActiveRecord::Schema.define(version: 20161105145710) do
     t.integer  "stars"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "customer_orders", force: :cascade do |t|
-    t.integer  "order_id"
-    t.integer  "customer_id"
-    t.time     "delivery_time"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "employee_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -44,6 +40,9 @@ ActiveRecord::Schema.define(version: 20161105145710) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "regular"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "delivery_employees", force: :cascade do |t|
@@ -85,17 +84,22 @@ ActiveRecord::Schema.define(version: 20161105145710) do
     t.string   "email_address"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "lineitems", force: :cascade do |t|
     t.integer  "pizza_id"
-    t.integer  "pizza_quantity"
-    t.integer  "side_id"
-    t.integer  "side_quantity"
-    t.integer  "drink_id"
-    t.integer  "drink_quantity"
-    t.integer  "dessert_id"
-    t.integer  "dessert_quantity"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "order_id"
+    t.integer  "quantity"
+    t.integer  "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "paymethod"
+    t.decimal  "total"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "delivery"
   end
 
   create_table "pizzas", force: :cascade do |t|
@@ -109,6 +113,18 @@ ActiveRecord::Schema.define(version: 20161105145710) do
     t.string   "image"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "quantity"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.date     "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
+    t.time     "time"
+    t.string   "comment"
+    t.integer  "stars"
+    t.string   "attachment"
   end
 
   create_table "sides", force: :cascade do |t|

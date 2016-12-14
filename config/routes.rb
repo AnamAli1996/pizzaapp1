@@ -1,6 +1,41 @@
 Rails.application.routes.draw do
 
+  resources :orders
+  resources :carts
+  resources :lineitems
+  get 'search/index'
+
+  get 'shop/index'
+
+  get 'search', :to=>'pizzas#search'
+  get 'search4', :to=>'desserts#search'
+  get 'search3', :to=>'drinks#search'
+  get 'search2', :to=>'sides#search'
+  get 'discount', :to => 'pizzas#discount'
+  get 'apply_discount', :to => 'pizzas#apply_discount'
+  
+  get 'discount2', :to => 'sides#discount'
+  get 'apply_discount2', :to => 'sides#apply_discount'
+  
+  get 'discount3', :to => 'desserts#discount'
+  get 'apply_discount3', :to => 'desserts#apply_discount'
+  
+  get 'discount4', :to => 'drinks#discount'
+  get 'apply_discount4', :to => 'drinks#apply_discount'
+
+
+  
+
+  resources :products
+  resources :orders
+  resources :lineitems
+  resources :carts
+  resources :lineitems
+  resources :carts
+  resources :line_items
+  resources :reviews
   resources :delivery_employees
+  
   controller :sessions do
 	get 'login' => :new
 	post 'login' => :create
@@ -10,15 +45,19 @@ Rails.application.routes.draw do
 	post 'login2' => :create2
 	get 'logout2'=> :destroy2
 	delete 'logout2' => :destroy2
-   end	
-
+   end
+   
+  
+  
+ 
   get 'pages/home'
 
   get 'pages/about'
   
-  resources :pizzas do
-	resources :comments
-   end	
+   resources :cart do	
+	 resources :lineitems
+	end	
+	
   resources :customer_orders
   resources :orders
   resources :employees

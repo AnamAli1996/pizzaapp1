@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pizza_id: 1
+  side_id: 1
+  drink_id: 1
+  dessert_id: 1
+  order: MyString
+  id: 1
+  quantity: 1
+  cart_id: 1
+
+two:
+  pizza_id: 1
+  side_id: 1
+  drink_id: 1
+  dessert_id: 1
+  order: MyString
+  id: 1
+  quantity: 1
+  cart_id: 1

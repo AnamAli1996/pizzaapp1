@@ -10,40 +10,14 @@
       </ul>
     </div>
   <% end %>
+  
+
 
   <div class="field">
-    <%= f.label :pizza_id %><br>
-	<%= f.collection_select:pizza_id, Pizza.all, :id, :pizza_name%>
+    <%= f.label :paymethod %><br>
+    <%= f.select :paymethod, ["Debit Card", "Credit card", "Paypal", "Cash on delivery"] %>
   </div>
-  <div class="field">
-    <%= f.label :pizza_quantity %><br>
-    <%= f.number_field :pizza_quantity %>
-  </div>
-  <div class="field">
-    <%= f.label :side_id %><br>
-   <%= f.collection_select:side_id, Side.all, :id, :side_name%>
-  </div>
-  <div class="field">
-    <%= f.label :side_quantity %><br>
-    <%= f.number_field :side_quantity %>
-  </div>
-  <div class="field">
-    <%= f.label :drink_id %><br>
-  <%= f.collection_select:drink_id, Drink.all, :id, :drink_brand%>
-  </div>
-  <div class="field">
-    <%= f.label :drink_quantity %><br>
-    <%= f.number_field :drink_quantity %>
-  </div>
-  <div class="field">
-    <%= f.label :dessert_id %><br>
-  <%= f.collection_select:dessert_id, Dessert.all, :id, :dessert_name%>
-  </div>
-  <div class="field">
-    <%= f.label :dessert_quantity %><br>
-    <%= f.number_field :dessert_quantity %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+ 
+    <%= f.submit :Submit, class: 'btn btn-success' %>
 <% end %>

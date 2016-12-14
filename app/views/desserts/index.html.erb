@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Desserts</h1>
+
+
+Can't find what you are looking for? <%=link_to "Click here", search_index_path %>
+
+<p> <% if signed_in2? %>
+			<%= link_to 'Apply Discount', discount3_path, method: :get %>
+<% end %>
+</p>
+
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -18,19 +28,22 @@
     <% @desserts.each do |dessert| %>
       <tr>
         <td><b><%= dessert.dessert_name %></b></td>
-        <td><%= dessert.price %></td>
+        <td><%= euro dessert.price %></td>
         <td><%= dessert.description %></td>
-        <td><%= dessert.vegetarian %></td>
-        <td><%= dessert.gluten_free %></td>
+        <td><%= yesno(dessert.vegetarian) %></td>
+        <td><%= glutenfree(dessert.gluten_free) %></td>
         <td><%= image_tag(dessert.image, :size=>"100x80") %></td>
         <td><%= link_to 'Show', dessert %></td>
-        <td><%= link_to 'Edit', edit_dessert_path(dessert) %></td>
-        <td><%= link_to 'Destroy', dessert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% if signed_in2? %>
+			<td><%= link_to 'Edit', edit_dessert_path(dessert) %></td>
+			<td><%= link_to 'Destroy', dessert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>	
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Dessert', new_dessert_path %>
+<% if signed_in2? %>
+	<%= link_to 'New Dessert', new_dessert_path %>
+<% end %>	

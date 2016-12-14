@@ -1,18 +1,18 @@
 class Order < ActiveRecord::Base
+	has_many :lineitems
 	
-	belongs_to :pizza
-	belongs_to :side
-	belongs_to :dessert
-	belongs_to :drink
+	def add_lineitems_from_cart(cart)
+		cart.lineitems.each do |item|
+			item.cart_id = nil
+			lineitems << item
+		end
+	end		
 	
-	has_many :customerOrders, dependent: :destroy
-	validates :pizza_quantity, numericality: {:greater_than => 0 }
-	validates :side_quantity, numericality: {:greater_than => 0 }
-	validates :drink_quantity, numericality: {:greater_than => 0 }
-	validates :dessert_quantity, numericality: {:greater_than => 0 }
+	def total_price(order)
+		order.total = order.lineitems.inject(0){|sum, p| sum +(p.pizza.price * p.quantity)}
+	end
 	
-	validates :pizza_quantity, presence: true
-	validates :side_quantity, presence: true
-	validates :drink_quantity, presence: true
-	validates :dessert_quantity, presence: true
+	def set_delivery
+		self.delivery = false
+	end	
 end

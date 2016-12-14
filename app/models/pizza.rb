@@ -1,6 +1,6 @@
-class Pizza < ActiveRecord::Base
-	has_many :orders,dependent:  :destroy
-	has_many :comments, :dependent => :destroy
+ class Pizza < ActiveRecord::Base
+	has_many :orders, dependent:  :destroy
+	has_many :lineitems
 	validates_uniqueness_of :pizza_name
 	validates :pizza_name, presence: true
 	validates :price, presence: true
@@ -11,7 +11,14 @@ class Pizza < ActiveRecord::Base
 	validates :spice_level, presence: true
 	validates :image, presence: true
 	
-	def average_stars
-		comments.average(:stars)
-	end	
+	
+	def self.search(query)
+		where("pizza_name LIKE ?", "%#{query}%")
+	end
+	
+	def apply_discount(pizza,discount)
+		if !pizza.nil?
+			pizza.price = pizza.price - pizza.price * discount
+		end
+	end
 end

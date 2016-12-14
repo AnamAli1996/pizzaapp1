@@ -1,0 +1,10 @@
+<% @orders.each do |order| %>
+	<%= order.id %>
+	<%= order.customer.first_name %>
+	<%= order.total %>
+		Not delivered yet!
+	
+		<%= link_to "Send delivery?", ship_path(order)%>
+		<br \>
+		<% end %>
+		

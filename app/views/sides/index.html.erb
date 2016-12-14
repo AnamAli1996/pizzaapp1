@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Sides</h1>
+
+Can't find what you are looking for? <%=link_to "Click here", search_index_path %>
+
+<p> <% if signed_in2? %>
+			<%= link_to 'Apply Discount', discount2_path, method: :get %>
+<% end %>
+</p>
+
+
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -18,19 +28,24 @@
     <% @sides.each do |side| %>
       <tr>
         <td><b><%= side.side_name %></b></td>
-        <td><%= side.price %></td>
+        <td><%= euro side.price %></td>
         <td><%= side.description %></td>
-        <td><%= side.vegetarian %></td>
-        <td><%= side.gluten_free %></td>
+        <td><%= yesno(side.vegetarian) %></td>
+        <td><%= glutenfree(side.gluten_free) %></td>
         <td><%= image_tag(side.image, :size=>"100x60") %></td>
+		
         <td><%= link_to 'Show', side %></td>
+		
+	<% if signed_in2? %>	
         <td><%= link_to 'Edit', edit_side_path(side) %></td>
         <td><%= link_to 'Destroy', side, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>	
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if signed_in2? %>
 <%= link_to 'New Side', new_side_path %>
+<% end %>

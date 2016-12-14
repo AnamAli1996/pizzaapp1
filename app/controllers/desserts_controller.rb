@@ -1,6 +1,6 @@
 class DessertsController < ApplicationController
   before_action :set_dessert, only: [:show, :edit, :update, :destroy]
-  before_action :authorise2, :except => [:index, :show]
+  before_action :authorise2, :except => [:index, :show, :search]
   # GET /desserts
   # GET /desserts.json
   def index
@@ -17,10 +17,33 @@ class DessertsController < ApplicationController
     @dessert = Dessert.new
   end
 
+   def discount 
+	end
+	
+  def apply_discount
+	discount = params[:discount].to_f
+	@desserts = Dessert.all
+	@desserts.each do |d|
+		d.apply_discount(d, discount)
+		d.save
+	end
+	render 'index', notice: "Discount has been applied"
+end	
+
   # GET /desserts/1/edit
   def edit
   end
-
+	
+  def search
+		@desserts = Dessert.search(params[:query])
+		unless @desserts.empty?
+			render 'index' 
+		else
+			flash[:notice] = 'No desserts available with that name'
+			@desserts = Dessert.all
+			render 'index'
+		end
+	end	
   # POST /desserts
   # POST /desserts.json
   def create

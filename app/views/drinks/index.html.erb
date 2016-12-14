@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Drinks</h1>
+Can't find what you are looking for? <%=link_to "Click here", search_index_path %>
+
+<p> <% if signed_in2? %>
+			<%= link_to 'Apply Discount', discount4_path, method: :get %>
+<% end %>
+</p>
+
 
 <table class="table table-bordered">
   <thead>
@@ -16,16 +23,19 @@
     <% @drinks.each do |drink| %>
       <tr>
         <td><b><%= drink.drink_brand %></b></td>
-        <td><%= drink.price %></td>
+        <td><%= euro drink.price %></td>
           <td><%= image_tag(drink.image, :size=>"100x80") %></td>
         <td><%= link_to 'Show', drink %></td>
-        <td><%= link_to 'Edit', edit_drink_path(drink) %></td>
-        <td><%= link_to 'Destroy', drink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% if signed_in2? %>
+			<td><%= link_to 'Edit', edit_drink_path(drink) %></td>
+			<td><%= link_to 'Destroy', drink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>	
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Drink', new_drink_path %>
+<% if signed_in2? %>
+	<%= link_to 'New Drink', new_drink_path %>
+<% end %>

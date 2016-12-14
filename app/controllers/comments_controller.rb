@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
 	before_filter :authorise
 	
 def create 
-		@pizza = Pizza.find params[:pizza_id]
+		@review = Review.find params[:pizza_id]
 		@comment = @pizza.comments.new(comment_params)
-		@comment.customer_id = @current_customer_id
+		@comment.customer_id = @current_customer.id
 		@comment.save
 		
 		respond_to do |format|

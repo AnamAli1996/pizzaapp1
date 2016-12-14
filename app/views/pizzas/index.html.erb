@@ -2,6 +2,17 @@
 
 <h1>Listing Pizzas</h1>
 
+
+
+Can't find what you are looking for? <%=link_to "Click here", search_index_path %>
+
+<p> <% if signed_in2? %>
+			<%= link_to 'Apply Discount', discount_path, method: :get %>
+<% end %>
+</p>
+
+
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -22,21 +33,24 @@
       <tr>
         <td><b><%= pizza.pizza_name %></b></td>
         <td><%= pizza.pizza_size %></td>
-        <td><%= pizza.price %></td>
+        <td><%= euro pizza.price %></td>
         <td><%= pizza.description %></td>
-        <td><%= pizza.vegetarian %></td>
-        <td><%= pizza.gluten_free %></td>
+        <td><%= yesno(pizza.vegetarian) %></td>
+        <td><%= glutenfree(pizza.gluten_free) %></td>
         <td><%= pizza.spice_level %></td>
         <td><%= image_tag(pizza.image, :size=>"100x80") %></td>
-		
+		<td><%= button_to 'Add to Cart', lineitems_path(pizza_id: pizza) %></td>
         <td><%= link_to 'Show', pizza %></td>
-        <td><%= link_to 'Edit', edit_pizza_path(pizza) %></td>
-        <td><%= link_to 'Destroy', pizza, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% if signed_in2? %>
+			<td><%= link_to 'Edit', edit_pizza_path(pizza) %></td>
+			<td><%= link_to 'Destroy', pizza, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>	
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if signed_in2? %>
 <%= link_to 'New Pizza', new_pizza_path %>
+<% end %>

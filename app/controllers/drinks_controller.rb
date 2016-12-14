@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
   before_action :set_drink, only: [:show, :edit, :update, :destroy]
-  before_action :authorise2, :except => [:index, :show]
+  before_action :authorise2, :except => [:index, :show, :search]
   # GET /drinks
   # GET /drinks.json
   def index
@@ -20,7 +20,31 @@ class DrinksController < ApplicationController
   # GET /drinks/1/edit
   def edit
   end
+  
+  def discount 
+	end
+	
+  def apply_discount
+	discount = params[:discount].to_f
+	@drinks = Drink.all
+	@drinks.each do |d|
+		d.apply_discount(d, discount)
+		d.save
+	end
+	render 'index', notice: "Discount has been applied"
+end	
 
+  def search
+		@drinks = Drink.search params[:query]
+		unless @drinks.empty?
+			render 'index' 
+		else
+			flash[:notice] = 'No drinks available with that name'
+			@drinks = Drinks.all
+			render 'index'
+		end
+	end	
+	
   # POST /drinks
   # POST /drinks.json
   def create

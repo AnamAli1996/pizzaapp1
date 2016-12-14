@@ -1,0 +1,20 @@
+ <%=form_for([Review.new]) do |f| %>
+	
+	<h3><%=f.label :stars %>
+		<% stars = [1,2,3,4,5] %>
+		<% stars.each do |star| %>
+			<%=f.radio_button :stars, star %><%= star %>
+		<% end %>
+	</h3></br>
+	<%=f.text_area :comment, :rows=> 4, :cols=>40 %>
+	<div class = "actions">
+		<%= f.submit "Post a review"%>
+	</div>
+	<%=form_for @review do |f| %>
+	<%= f.label :attachment %>
+	<%= f.file_field :attachment %>
+	<% end %>
+<% end %>
+
+	
+  

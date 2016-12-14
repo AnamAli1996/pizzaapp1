@@ -1,11 +1,24 @@
 class PizzasController < ApplicationController
   before_action :set_pizza, only: [:show, :edit, :update, :destroy]
-  before_action :authorise2, :except => [:index, :show]
+  before_action :authorise2, :except => [:index, :show, :search]
   # GET /pizzas
   # GET /pizzas.json
   def index
     @pizzas = Pizza.all
   end
+  
+  def discount 
+	end
+	
+  def apply_discount
+	discount = params[:discount].to_f
+	@pizzas = Pizza.all
+	@pizzas.each do |p|
+		p.apply_discount(p, discount)
+		p.save
+	end
+	render 'index', notice: "Discount has been applied"
+end	
 
   # GET /pizzas/1
   # GET /pizzas/1.json
@@ -20,12 +33,24 @@ class PizzasController < ApplicationController
   # GET /pizzas/1/edit
   def edit
   end
-
+  
+  def search
+	@pizzas = Pizza.search params[:query]
+		unless @pizzas.empty?
+			render 'index'
+		else
+			flash[:notice] = "No records matches that search"
+			render 'index'
+		end	
+	end
+	
+	
+		
   # POST /pizzas
   # POST /pizzas.json
   def create
     @pizza = Pizza.new(pizza_params)
-	
+		
 
     respond_to do |format|
       if @pizza.save

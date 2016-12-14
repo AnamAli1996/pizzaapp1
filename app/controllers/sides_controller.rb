@@ -1,6 +1,6 @@
 class SidesController < ApplicationController
   before_action :set_side, only: [:show, :edit, :update, :destroy]
-  before_action :authorise2, :except => [:index, :show]
+  before_action :authorise2, :except => [:index, :show, :search]
   # GET /sides
   # GET /sides.json
   def index
@@ -11,6 +11,19 @@ class SidesController < ApplicationController
   # GET /sides/1.json
   def show
   end
+  
+   def discount 
+	end
+	
+  def apply_discount
+	discount = params[:discount].to_f
+	@sides = Side.all
+	@sides.each do |s|
+		s.apply_discount(s, discount)
+		s.save
+	end
+	render 'index', notice: "Discount has been applied"
+end	
 
   # GET /sides/new
   def new
@@ -21,6 +34,16 @@ class SidesController < ApplicationController
   def edit
   end
 
+  def search
+		@sides = Side.search params[:query]
+		unless @sides.empty?
+			render 'index' 
+		else
+			flash[:notice] = 'No side available with that name'
+			@sides = Side.all
+			render 'index'
+		end
+	end	
   # POST /sides
   # POST /sides.json
   def create
